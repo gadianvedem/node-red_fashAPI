@@ -1,0 +1,7 @@
+D:\bt_thaycop_nhietdorandom-master\clone\demo_api_57kmt\bin\demo_api_57kmt.dll.config
+D:\bt_thaycop_nhietdorandom-master\clone\demo_api_57kmt\bin\demo_api_57kmt.dll
+D:\bt_thaycop_nhietdorandom-master\clone\demo_api_57kmt\bin\demo_api_57kmt.pdb
+D:\bt_thaycop_nhietdorandom-master\clone\demo_api_57kmt\obj\Debug\web_randomdata.csproj.AssemblyReference.cache
+D:\bt_thaycop_nhietdorandom-master\clone\demo_api_57kmt\obj\Debug\web_randomdata.csproj.CoreCompileInputs.cache
+D:\bt_thaycop_nhietdorandom-master\clone\demo_api_57kmt\obj\Debug\demo_api_57kmt.dll
+D:\bt_thaycop_nhietdorandom-master\clone\demo_api_57kmt\obj\Debug\demo_api_57kmt.pdb

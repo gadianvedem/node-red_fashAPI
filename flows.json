@@ -1,0 +1,230 @@
+[
+    {
+        "id": "37810a5dbc35e96c",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "29c16b5ba2c60e5c",
+        "type": "inject",
+        "z": "37810a5dbc35e96c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 200,
+        "wires": [
+            [
+                "97527b8d5fa0c31e"
+            ]
+        ]
+    },
+    {
+        "id": "97527b8d5fa0c31e",
+        "type": "function",
+        "z": "37810a5dbc35e96c",
+        "name": "",
+        "func": "msg.payload = 'select * from sensor;'\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 200,
+        "wires": [
+            [
+                "fed428c8fa681d2e",
+                "ed4c42e23501fbc5"
+            ]
+        ]
+    },
+    {
+        "id": "fed428c8fa681d2e",
+        "type": "debug",
+        "z": "37810a5dbc35e96c",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "189731c6a967bafb",
+        "type": "debug",
+        "z": "37810a5dbc35e96c",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "ed4c42e23501fbc5",
+        "type": "MSSQL",
+        "z": "37810a5dbc35e96c",
+        "mssqlCN": "4b27d799493ce389",
+        "name": "thedinh",
+        "outField": "payload",
+        "returnType": "0",
+        "throwErrors": "0",
+        "query": "",
+        "modeOpt": "",
+        "modeOptType": "query",
+        "queryOpt": "payload",
+        "queryOptType": "msg",
+        "paramsOpt": "queryParams",
+        "paramsOptType": "msg",
+        "rows": "",
+        "rowsType": "msg",
+        "parseMustache": true,
+        "params": [],
+        "x": 700,
+        "y": 500,
+        "wires": [
+            [
+                "189731c6a967bafb"
+            ]
+        ]
+    },
+    {
+        "id": "fa6ced10ce5123d0",
+        "type": "http request",
+        "z": "37810a5dbc35e96c",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://127.0.0.1:8000/",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 290,
+        "y": 500,
+        "wires": [
+            [
+                "b7316fb9560a44aa"
+            ]
+        ]
+    },
+    {
+        "id": "b9bb45a12c5ef6e9",
+        "type": "inject",
+        "z": "37810a5dbc35e96c",
+        "name": "nhiệt độ",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 460,
+        "wires": [
+            [
+                "fa6ced10ce5123d0"
+            ]
+        ]
+    },
+    {
+        "id": "b7316fb9560a44aa",
+        "type": "function",
+        "z": "37810a5dbc35e96c",
+        "name": "function 3",
+        "func": "var json = JSON.parse(msg.payload);\nmsg.payload = `INSERT INTO history (sid, value) VALUES ('1',${json.temperature})`\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 520,
+        "wires": [
+            [
+                "ed4c42e23501fbc5",
+                "80dceedad99b9b67"
+            ]
+        ]
+    },
+    {
+        "id": "80dceedad99b9b67",
+        "type": "debug",
+        "z": "37810a5dbc35e96c",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "4b27d799493ce389",
+        "type": "MSSQL-CN",
+        "tdsVersion": "7_4",
+        "name": "thedinh",
+        "server": "127.0.0.1",
+        "port": "1443",
+        "encyption": true,
+        "trustServerCertificate": true,
+        "database": "anhdinh",
+        "useUTC": false,
+        "connectTimeout": "",
+        "requestTimeout": "",
+        "cancelTimeout": "",
+        "pool": "",
+        "parseJSON": false,
+        "enableArithAbort": true,
+        "readOnlyIntent": false
+    }
+]
